@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>סלסלת המתנות ליום העצמאות 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --blue-deep: #0047AB;
+  --blue-mid: #0066CC;
+  --blue-bright: #2196F3;
+  --blue-sky: #87CEEB;
+  --blue-pale: #DCEEFB;
+  --blue-frost: #EDF5FC;
+  --white: #FFFFFF;
+  --gold-accent: #D4AF37;
+  --card-shadow: 0 4px 24px rgba(0, 71, 171, 0.10);
+  --card-hover-shadow: 0 12px 40px rgba(0, 71, 171, 0.18);
+  --font-display: 'Frank Ruhl Libre', serif;
+  --font-body: 'Heebo', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--blue-frost);
+  color: #1a3a5c;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== STRIPED BACKGROUND ===== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(135, 206, 235, 0.12) 0px,
+    rgba(135, 206, 235, 0.12) 28px,
+    transparent 28px,
+    transparent 56px
+  );
+}
+
+/* ===== FLAG RIBBON (top-right corner) ===== */
+.flag-ribbon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 180px;
+  height: 180px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 10;
+}
+.flag-ribbon::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: -50px;
+  width: 260px;
+  height: 10px;
+  background: var(--blue-deep);
+  transform: rotate(45deg);
+  box-shadow: 0 18px 0 0 var(--white), 0 26px 0 0 var(--blue-deep);
+}
+.flag-ribbon-right {
+  left: auto;
+  right: 0;
+}
+.flag-ribbon-right::before {
+  left: auto;
+  right: -50px;
+  transform: rotate(-45deg);
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px 60px;
+  background: linear-gradient(175deg, #d6eeff 0%, #f0f8ff 40%, #e0f0ff 100%);
+  overflow: hidden;
+}
+
+/* Firework burst keyframes */
+@keyframes firework-rise {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 0; }
+}
+@keyframes firework-burst {
+  0% { transform: scale(0); opacity: 1; }
+  50% { opacity: 1; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  20% { opacity: 1; transform: scale(1) rotate(90deg); }
+  80% { opacity: 0.6; transform: scale(0.8) rotate(270deg); }
+}
+@keyframes float-star {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+  50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+}
+
+/* Firework particles (CSS-only) */
+.fireworks-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.firework {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.firework::before, .firework::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+.fw-1 { top: 12%; left: 15%; background: var(--blue-deep); animation: firework-burst 4s ease-out 0.5s infinite; }
+.fw-1::before { top: -20px; left: 15px; background: var(--blue-bright); animation-delay: 0.7s; }
+.fw-1::after { top: 10px; left: -18px; background: var(--blue-sky); animation-delay: 1.2s; }
+
+.fw-2 { top: 8%; right: 20%; background: var(--blue-mid); animation: firework-burst 5s ease-out 1.5s infinite; }
+.fw-2::before { top: -15px; left: -20px; background: var(--blue-deep); animation-delay: 1.8s; }
+.fw-2::after { top: 18px; left: 12px; background: var(--blue-bright); animation-delay: 2.1s; }
+
+.fw-3 { top: 20%; left: 40%; background: var(--blue-sky); animation: firework-burst 4.5s ease-out 2.5s infinite; }
+.fw-3::before { top: -22px; left: 8px; background: var(--blue-mid); animation-delay: 2.8s; }
+
+.fw-4 { top: 5%; right: 35%; background: var(--blue-bright); animation: firework-burst 3.8s ease-out 0.2s infinite; }
+.fw-4::after { top: 15px; left: -10px; background: var(--blue-deep); animation-delay: 0.5s; }
+
+.fw-5 { top: 15%; left: 70%; background: var(--blue-deep); animation: firework-burst 5.5s ease-out 3s infinite; }
+.fw-5::before { top: -12px; left: -15px; background: var(--blue-sky); animation-delay: 3.3s; }
+
+.fw-6 { top: 25%; right: 10%; background: var(--blue-mid); animation: firework-burst 4.2s ease-out 1s infinite; }
+
+/* Floating stars */
+.star {
+  position: absolute;
+  font-size: 18px;
+  animation: float-star 5s ease-in-out infinite;
+  opacity: 0.5;
+  color: var(--blue-deep);
+}
+.star:nth-child(1) { top: 6%; left: 8%; animation-delay: 0s; font-size: 14px; }
+.star:nth-child(2) { top: 10%; right: 12%; animation-delay: 1.2s; font-size: 20px; }
+.star:nth-child(3) { top: 18%; left: 25%; animation-delay: 2.4s; }
+.star:nth-child(4) { top: 3%; right: 40%; animation-delay: 0.8s; font-size: 12px; }
+.star:nth-child(5) { top: 22%; right: 28%; animation-delay: 3.1s; font-size: 16px; }
+.star:nth-child(6) { top: 8%; left: 55%; animation-delay: 1.8s; font-size: 22px; }
+.star:nth-child(7) { top: 28%; left: 10%; animation-delay: 4s; font-size: 13px; }
+.star:nth-child(8) { top: 14%; right: 5%; animation-delay: 2.8s; }
+
+/* Decorative rosettes (like the PDF) */
+.rosette {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+.rosette::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  border: 1.5px dotted rgba(255, 255, 255, 0.35);
+}
+.rosette-1 { width: 100px; height: 100px; top: 4%; left: 5%; }
+.rosette-2 { width: 70px; height: 70px; top: 8%; right: 15%; }
+.rosette-3 { width: 55px; height: 55px; top: 2%; left: 35%; }
+.rosette-4 { width: 90px; height: 90px; top: 12%; right: 5%; }
+.rosette-5 { width: 45px; height: 45px; top: 20%; left: 18%; }
+.rosette-6 { width: 80px; height: 80px; top: 1%; right: 30%; }
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: var(--blue-deep);
+  color: var(--white);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 6px 22px;
+  border-radius: 40px;
+  letter-spacing: 0.5px;
+  margin-bottom: 28px;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  color: var(--blue-deep);
+  line-height: 1.2;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 12px rgba(0, 71, 171, 0.12);
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.hero h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  color: var(--blue-mid);
+  margin-bottom: 8px;
+  animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.hero-subtitle {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--blue-mid);
+  font-style: italic;
+  animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Flag wave divider */
+.flag-divider {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 40px auto 0;
+  animation: fadeInUp 1s ease-out 0.8s both;
+}
+
+.flag-divider svg {
+  width: 100%;
+  height: auto;
+}
+
+/* Magen David decoration */
+.magen-david {
+  display: inline-block;
+  font-size: 2rem;
+  color: var(--blue-deep);
+  margin-top: 20px;
+  animation: fadeInUp 1s ease-out 1s both;
+}
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s ease-in-out infinite;
+  color: var(--blue-mid);
+  font-size: 1.5rem;
+  opacity: 0.6;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(12px); }
+}
+
+/* ===== WELCOME SECTION ===== */
+.welcome {
+  position: relative;
+  padding: 80px 24px;
+  text-align: center;
+  background: var(--white);
+}
+
+.welcome::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--white));
+  pointer-events: none;
+}
+
+.welcome-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.welcome h3 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--blue-deep);
+  margin-bottom: 28px;
+}
+
+.welcome p {
+  font-size: 1.15rem;
+  line-height: 2;
+  color: #2a4a6c;
+  font-weight: 300;
+}
+
+.welcome p strong {
+  font-weight: 700;
+  color: var(--blue-deep);
+}
+
+.welcome-signature {
+  margin-top: 32px;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--blue-deep);
+}
+
+/* Horizontal flag bar */
+.flag-bar {
+  width: 100%;
+  height: 36px;
+  background:
+    linear-gradient(to bottom,
+      var(--blue-deep) 0%, var(--blue-deep) 22%,
+      var(--white) 22%, var(--white) 78%,
+      var(--blue-deep) 78%, var(--blue-deep) 100%
+    );
+  position: relative;
+  overflow: hidden;
+}
+.flag-bar::after {
+  content: '✡';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  color: var(--blue-deep);
+}
+
+/* ===== GIFTS SECTION ===== */
+.gifts-section {
+  padding: 70px 24px 90px;
+  background: linear-gradient(180deg, var(--blue-frost) 0%, #f7fbff 100%);
+}
+
+.gifts-section h2 {
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  color: var(--blue-deep);
+  margin-bottom: 16px;
+}
+
+.gifts-subtitle {
+  text-align: center;
+  font-size: 1.05rem;
+  color: var(--blue-mid);
+  margin-bottom: 50px;
+  font-weight: 300;
+}
+
+.gifts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Gift Card */
+.gift-card {
+  position: relative;
+  background: var(--white);
+  border-radius: 18px;
+  padding: 36px 30px 28px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.35s cubic-bezier(.4,0,.2,1), box-shadow 0.35s cubic-bezier(.4,0,.2,1);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.gift-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.35s cubic-bezier(.4,0,.2,1);
+}
+
+.gift-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+/* Top accent line */
+.gift-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--blue-deep), var(--blue-bright), var(--blue-deep));
+  border-radius: 18px 18px 0 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.gift-card:hover::before {
+  opacity: 1;
+}
+
+/* Mini flag ribbon on card */
+.gift-card::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--blue-deep) 33%, var(--white) 33% 66%, var(--blue-deep) 66%);
+  border-radius: 0 0 18px 0;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.card-emoji {
+  font-size: 2.6rem;
+  margin-bottom: 16px;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+}
+
+.card-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--blue-deep);
+  margin-bottom: 10px;
+}
+
+.card-desc {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #3a5a7c;
+  font-weight: 300;
+  margin-bottom: 22px;
+  min-height: 50px;
+}
+
+.card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 11px 26px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.card-cta:hover {
+  background: linear-gradient(135deg, var(--blue-mid), var(--blue-bright));
+  transform: scale(1.04);
+  box-shadow: 0 4px 18px rgba(0, 102, 204, 0.3);
+}
+
+.card-cta svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s;
+}
+.card-cta:hover svg {
+  transform: translateX(-4px);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  position: relative;
+  padding: 60px 24px 40px;
+  text-align: center;
+  background: var(--blue-deep);
+  color: var(--white);
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 0px,
+    rgba(255, 255, 255, 0.03) 28px,
+    transparent 28px,
+    transparent 56px
+  );
+  pointer-events: none;
+}
+
+.footer h2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.footer-flag {
+  font-size: 3rem;
+  margin-bottom: 18px;
+  display: block;
+  position: relative;
+}
+
+.footer p {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  position: relative;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .gifts-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 4px;
+  }
+
+  .hero { min-height: 85vh; padding: 60px 20px 50px; }
+  .welcome { padding: 50px 20px; }
+  .gifts-section { padding: 50px 16px 70px; }
+
+  .flag-ribbon { width: 120px; height: 120px; }
+  .flag-ribbon::before { width: 200px; top: 18px; }
+
+  .rosette { display: none; }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .gifts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="flag-ribbon"></div>
+  <div class="flag-ribbon flag-ribbon-right"></div>
+
+  <!-- Firework particles -->
+  <div class="fireworks-container">
+    <div class="firework fw-1"></div>
+    <div class="firework fw-2"></div>
+    <div class="firework fw-3"></div>
+    <div class="firework fw-4"></div>
+    <div class="firework fw-5"></div>
+    <div class="firework fw-6"></div>
+
+    <span class="star">&#10038;</span>
+    <span class="star">&#10038;</span>
+    <span class="star">&#10038;</span>
+    <span class="star">&#10038;</span>
+    <span class="star">&#10038;</span>
+    <span class="star">&#10038;</span>
+    <span class="star">&#10038;</span>
+    <span class="star">&#10038;</span>
+
+    <div class="rosette rosette-1"></div>
+    <div class="rosette rosette-2"></div>
+    <div class="rosette rosette-3"></div>
+    <div class="rosette rosette-4"></div>
+    <div class="rosette rosette-5"></div>
+    <div class="rosette rosette-6"></div>
+  </div>
+
+  <div class="hero-content">
+    <span class="hero-badge">יום העצמאות 2026</span>
+    <h1>סלסלת המתנות</h1>
+    <h2>ליום העצמאות 2026</h2>
+    <p class="hero-subtitle">ממש כאן!</p>
+
+    <div class="flag-divider">
+      <svg viewBox="0 0 400 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 25 Q50 5, 100 20 T200 25 T300 20 T400 25" stroke="#0047AB" stroke-width="3" fill="none" opacity="0.7">
+          <animate attributeName="d" dur="4s" repeatCount="indefinite"
+            values="M0 25 Q50 5, 100 20 T200 25 T300 20 T400 25;
+                    M0 25 Q50 35, 100 20 T200 25 T300 30 T400 25;
+                    M0 25 Q50 5, 100 20 T200 25 T300 20 T400 25" />
+        </path>
+        <path d="M0 30 Q50 10, 100 25 T200 30 T300 25 T400 30" stroke="#0047AB" stroke-width="3" fill="none" opacity="0.7">
+          <animate attributeName="d" dur="4s" repeatCount="indefinite"
+            values="M0 30 Q50 10, 100 25 T200 30 T300 25 T400 30;
+                    M0 30 Q50 40, 100 25 T200 30 T300 35 T400 30;
+                    M0 30 Q50 10, 100 25 T200 30 T300 25 T400 30" />
+        </path>
+        <text x="200" y="28" text-anchor="middle" font-size="14" fill="#0047AB">&#10017;</text>
+      </svg>
+    </div>
+
+    <div class="magen-david">&#10017;</div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">&#8964;</div>
+</header>
+
+<!-- ===== WELCOME ===== -->
+<section class="welcome" aria-label="ברוכים הבאים">
+  <div class="welcome-inner">
+    <h3>היי, איזה כיף שבאת!</h3>
+    <p>
+      לכבוד החג התאגדנו מספר מרצים, מאמנים ומטפלים לפנק אותך
+      <strong>במדריכים דיגיטלים</strong> להעשרה בנושאים שונים ומגוונים.
+    </p>
+    <p style="margin-top: 18px;">
+      כל שעליך לעשות הוא <strong>לבחור מתנה</strong>
+      (אפשר כמה שרוצים!)
+      שמעניין אותך וללחוץ על הלינק.
+    </p>
+    <p style="margin-top: 18px;">
+      במתנות הושקעו זמן ומחשבה רבים על מנת לתת לכם ערך,
+      מקווים שיעניינו אותך ויעבירו לך את החג בנעימים.
+    </p>
+    <div class="welcome-signature">עצמאות שמח, יפעת רון.</div>
+  </div>
+</section>
+
+<div class="flag-bar" aria-hidden="true"></div>
+
+<!-- ===== GIFTS ===== -->
+<section class="gifts-section" aria-label="המתנות">
+  <h2>בחרו את המתנה שלכם</h2>
+  <p class="gifts-subtitle">16 מדריכים דיגיטלים מקצועיים - בחינם, לכבוד החג</p>
+
+  <div class="gifts-grid">
+
+    <article class="gift-card">
+      <span class="card-emoji" aria-hidden="true">&#x1F50B;</span>
+      <h3 class="card-name">יפעת</h3>
+      <p class="card-desc">מדריך להטענת הבטריה למתמודדים עם מחלות שקופות</p>
+      <a href="#" class="card-cta">
+        לקבלת המתנה
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+    </article>
+
+    <article class="gift-card">
+      <span class="card-emoji" aria-hidden="true">&#x26A1;</span>
+      <h3 class="card-name">ד"ר אבירם</h3>
+      <p class="card-desc">הדרכה איך לחזור לאנרגיה שהייתה לך פעם</p>
+      <a href="#" class="card-cta">
+        לקבלת המתנה
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+    </article>
+
+    <article class="gift-card">
+      <span class="card-emoji" aria-hidden="true">&#x1F9E0;</span>
+      <h3 class="card-name">הלה</h3>
+      <p class="card-desc">כלי למיקוד שיעזור לעשות סדר בראש, לראות מה באמת חשוב</p>
+      <a href="#" class="card-cta">
+        לקבלת המתנה
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+    </article>
+
+    <article class="gift-card">
+      <span class="card-emoji" aria-hidden="true">&#x1F33F;</span>
+      <h3 class="card-name">אליזבט</h3>
+      <p class="card-desc">סדנה לניקוי רעלים מהנפש</p>
+      <a href="#" class="card-cta">
+        לקבלת המתנה
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+    </article>
+
+    <article class="gift-card">
+      <span class="card-emoji" aria-hidden="true">&#x1F6E1;&#xFE0F;</span>
+      <h3 class="card-name">אילנה</h3>
+      <p class="card-desc">לומר לא ללא אשמה</p>
+      <a href="#" class="card-cta">
+        לקבלת המתנה
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+    </article>
+
+    <article class="gift-card">
+      <span class="card-emoji" aria-hidden="true">&#x1F4AC;</span>
+      <h3 class="card-name">ענת</h3>
+      <p class="card-desc">הדרך הקצרה לתקשורת נכונה מול המתמודד</p>
+      <a href="#" class="card-cta">
+        לקבלת המתנה
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+    </article>
+
+    <article class="gift-card">
+      <span class="card-emoji" aria-hidden="true">&#x1F9ED;</span>
+      <h3 class="card-name">ד"ר מגי</h3>
+      <p class="card-desc">מדריך לעבודה עצמית לקבלת החלטות ובחירות</p>
+      <a href="#" class="card-cta">
+        לקבלת המתנה
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+    </article>
+
+    <article class="gift-card">
+      <span class="card-emoji" aria-hidden="true">&#x1F46A;</span>
+      <h3 class="card-name">שלומית ונילי</h3>
+      <p class="card-desc">10 הדיברות להורים למתבגרים &mdash; איך לשדרג את הקשר עם המתבגר שלכם</p>
+      <a href="#" class="card-cta">
+        לקבלת המתנה
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+    </article>
+
+    <article class="gift-card">
+      <span class="card-emoji" aria-hidden="true">&#x1F33B;</span>
+      <h3 class="card-name">ליהי</h3>
+      <p class="card-desc">מדריך לניקוי רעלים טבעי, עפ"י גישת הרמב"ם</p>
+      <a href="#" class="card-cta">
+        לקבלת המתנה
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+    </article>
+
+    <article class="gift-card">
+      <span class="card-emoji" aria-hidden="true">&#x1F50D;</span>
+      <h3 class="card-name">ענר</h3>
+      <p class="card-desc">מדריך לאבחון חסמי תקשורת</p>
+      <a href="#" class="card-cta">
+        לקבלת המתנה
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+    </article>
+
+    <article class="gift-card">
+      <span class="card-emoji" aria-hidden="true">&#x1F393;</span>
+      <h3 class="card-name">ד"ר יואב</h3>
+      <p class="card-desc">המדריך המלא לצעירים שמחפשים את המסלול המקצועי והלימודי שמתאים להם</p>
+      <a href="#" class="card-cta">
+        לקבלת המתנה
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+    </article>
+
+    <article class="gift-card">
+      <span class="card-emoji" aria-hidden="true">&#x1F4AA;</span>
+      <h3 class="card-name">טל</h3>
+      <p class="card-desc">להוריד את הבטן, לרדת במשקל להעלות אנרגיה</p>
+      <a href="#" class="card-cta">
+        לקבלת המתנה
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+    </article>
+
+    <article class="gift-card">
+      <span class="card-emoji" aria-hidden="true">&#x1F495;</span>
+      <h3 class="card-name">רקפת</h3>
+      <p class="card-desc">מדריך מתנה: איך לריב נכון כדי לשמור על זוגיות בריאה</p>
+      <a href="#" class="card-cta">
+        לקבלת המתנה
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+    </article>
+
+    <article class="gift-card">
+      <span class="card-emoji" aria-hidden="true">&#x1F48D;</span>
+      <h3 class="card-name">לימור</h3>
+      <p class="card-desc">מתלות לשלמות &mdash; 7 שלבים לזוגיות פרק ב'</p>
+      <a href="#" class="card-cta">
+        לקבלת המתנה
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+    </article>
+
+    <article class="gift-card">
+      <span class="card-emoji" aria-hidden="true">&#x2615;</span>
+      <h3 class="card-name">פיבי</h3>
+      <p class="card-desc">מדריך של דייט בבטחון</p>
+      <a href="#" class="card-cta">
+        לקבלת המתנה
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+    </article>
+
+    <article class="gift-card">
+      <span class="card-emoji" aria-hidden="true">&#x1F9F8;</span>
+      <h3 class="card-name">קרן</h3>
+      <p class="card-desc">המדריך לאמא לילד עם חרדות</p>
+      <a href="#" class="card-cta">
+        לקבלת המתנה
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<div class="flag-bar" aria-hidden="true"></div>
+<footer class="footer">
+  <span class="footer-flag" aria-hidden="true">&#127470;&#127473;</span>
+  <h2>יום עצמאות שמח!</h2>
+  <p>סלסלת המתנות ליום העצמאות 2026 &bull; יפעת רון</p>
+</footer>
+
+<script>
+// Scroll-reveal for gift cards
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      const card = entry.target;
+      const idx = Array.from(card.parentElement.children).indexOf(card);
+      setTimeout(() => {
+        card.classList.add('visible');
+      }, idx % 3 * 120);
+      observer.unobserve(card);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.gift-card').forEach(card => observer.observe(card));
+</script>
+
+</body>
+</html>
